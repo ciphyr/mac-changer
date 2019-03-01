@@ -1,5 +1,6 @@
 import subprocess
 import optparse
+import re
 
 #Future improvements
 #Select random MAC from specified vendor, Generate random MAC, Autorun at startup with specified MAC
@@ -26,3 +27,7 @@ def change_mac(interface, new_mac):
 
 options = get_cmd_args()
 change_mac(options.interface, options.new_mac)
+
+ifconfig_result = subprocess.check_output(["ifconfig", options.interface])
+
+print(ifconfig_result)
